@@ -1,0 +1,31 @@
+<!-- searchapp/templates/search.html -->
+<html>
+
+<head>
+    <title>Search</title>
+</head>
+
+<body>
+    <form method="get" action="{% url 'search' %}">
+        <input type="text" name="q" placeholder="Search..." value="{{ query }}">
+        <select name="type">
+            <option value="standard" {% if query_type == "standard" %}selected{% endif %}>Standard Query</option>
+            <option value="phrase" {% if query_type == "phrase" %}selected{% endif %}>Phrase Query</option>
+            <option value="wildcard" {% if query_type == "wildcard" %}selected{% endif %}>Wildcard Query</option>
+        </select>
+        <button type="submit">Search</button>
+    </form>
+    <ul>
+        {% for result in results %}
+        <li>
+            <h2>{{ result.title }}</h2>
+            <p>{{ result.abstract }}</p>
+            <a href="{{ result.url }}">Read more</a>
+        </li>
+        {% empty %}
+        <li>No results found.</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
