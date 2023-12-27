@@ -19,7 +19,5 @@ from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('search/', include('searchblog.urls')),
-    path('accounts/', include('searchblog.urls')),  # 这里包含了您应用的URL配置
-    re_path(r'^$', RedirectView.as_view(url='/accounts/login/', permanent=True)),   # 添加这行来重定向根URL
+    path('', include('searchblog.urls')),  # 包含 searchblog 应用的所有 URL
 ]

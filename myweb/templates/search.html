@@ -4,47 +4,27 @@
 <head>
     <title>博客搜索引擎Blog</title>
     <script src="{% static 'js/jquery.min.js' %}"></script> <!-- 确保已经加载了jQuery -->
-    <script>
-    function takeSnapshot(url) {
-        $.ajax({
-            url: '{% url "snapshot" %}', // Django的URL名称为snapshot的视图
-            type: 'POST',
-            data: { 'url': url },
-            success: function(data) {
-                alert('网页快照保存成功!');
-            },
-            error: function(error) {
-                alert('Error taking snapshot: ' + error);
-            }
-        });
-    }
-    </script>
 </head>
 
 <body>
-    <form method="get" action="{% url 'search' %}">
+    <!-- 搜索表单，让用户可以重新搜索 -->
+    <form method="get" action="{% url 'search_results' %}">
         <input type="text" name="q" placeholder="Search..." value="{{ query }}">
         <select name="type">
             <option value="standard" {% if query_type == "standard" %}selected{% endif %}>站内查询</option>
             <option value="phrase" {% if query_type == "phrase" %}selected{% endif %}>短语查询</option>
             <option value="wildcard" {% if query_type == "wildcard" %}selected{% endif %}>通配查询</option>
         </select>
+        <!-- 新增排序方式选择 -->
+        <!-- 在 search.html 模板中 -->
+        <select name="sort_method">
+            <option value="personalize_search" {% if sort_method == "personalize_search" %}selected{% endif %}>个性化查询</option>
+            <option value="pagerank_only" {% if sort_method == "pagerank_only" %}selected{% endif %}>仅PageRank</option>
+        </select>
         <button type="submit">查询</button>
     </form>
     <!-- 添加查看查询日志的链接 -->
     <a href="{% url 'view_search_logs' %}">查看查询日志</a>
-    <ul>
-        {% for result in results %}
-        <li>
-            <h2>{{ result.title }}</h2>
-            <p>{{ result.abstract }}</p>
-            <a href="{{ result.url }}">阅读原文</a>
-            <button onclick="takeSnapshot('{{ result.url }}')">获取网页快照</button>
-        </li>
-        {% empty %}
-        <li>查询结果为空</li>
-        {% endfor %}
-    </ul>
 </body>
 
 </html>

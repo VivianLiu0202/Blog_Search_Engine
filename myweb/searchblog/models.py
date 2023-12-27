@@ -50,6 +50,16 @@ class SearchQueryLog(models.Model):
     def __str__(self):
         return f"{self.user} searched for {self.query} on {self.timestamp}"
 
+# 查询点击日志
+class ClickLog(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    url = models.URLField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user} clicked on {self.url} at {self.timestamp}"
+
+
 #网页快照的model
 class WebpageSnapshot(models.Model):
     url = models.URLField(unique=True)

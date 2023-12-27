@@ -1,0 +1,93 @@
+<!-- searchapp/templates/search.html -->
+{% load static %}
+<html>
+<head>
+    <title>博客搜索引擎Blog</title>
+    <script src="{% static 'js/jquery.min.js' %}"></script> <!-- 确保已经加载了jQuery -->
+    <script>
+        function takeSnapshot(url) {
+            $.ajax({
+                url: '{% url "snapshot" %}', // Django的URL名称为snapshot的视图
+                type: 'POST',
+                data: { 'url': url },
+                success: function(data) {
+                    alert('网页快照保存成功!');
+                },
+                error: function(error) {
+                    alert('Error taking snapshot: ' + error);
+                }
+            });
+        }
+    </script>
+    <script>
+        function recordClick(url) {
+            $.ajax({
+                url: '{% url "record_click" %}',
+                type: 'POST',
+                data: {
+                    'url': url,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                success: function(response) {
+                    console.log("Click recorded");
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <!-- 搜索表单，让用户可以重新搜索 -->
+    <form method="get" action="{% url 'search_results' %}">
+        <input type="text" name="q" placeholder="Search..." value="{{ query }}">
+        <select name="type">
+            <option value="standard" {% if query_type == "standard" %}selected{% endif %}>站内查询</option>
+            <option value="phrase" {% if query_type == "phrase" %}selected{% endif %}>短语查询</option>
+            <option value="wildcard" {% if query_type == "wildcard" %}selected{% endif %}>通配查询</option>
+        </select>
+        <!-- 新增排序方式选择 -->
+        <!-- 在 search.html 模板中 -->
+        <select name="sort_method">
+            <option value="personalize_search" {% if sort_method == "personalize_search" %}selected{% endif %}>个性化查询</option>
+            <option value="pagerank_only" {% if sort_method == "pagerank_only" %}selected{% endif %}>仅PageRank</option>
+        </select>
+        <button type="submit">查询</button>
+    </form>
+    <!-- 添加查看查询日志的链接 -->
+    <a href="{% url 'view_search_logs' %}">查看查询日志</a>
+    <!-- 修改搜索结果部分 -->
+    <ul>
+        {% for result in page_obj %}
+            <li>
+                <h2>{{ result.title }}</h2>
+                <p>{{ result.abstract }}</p>
+                <a href="{{ result.url }}" onclick="recordClick('{{ result.url }}')">阅读原文</a>
+                <!-- 添加一个链接，让用户可以保存网页快照 -->
+                <a href="#" onclick="takeSnapshot('{{ result.url }}'); return false;">保存网页快照</a>
+            </li>
+        {% empty %}
+            <li>查询结果为空</li>
+        {% endfor %}
+    </ul>
+
+    <!-- 翻页控件 -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?q={{ query }}&page=1">&laquo; first</a>
+                <a href="?q={{ query }}&page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+            
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+            
+            {% if page_obj.has_next %}
+                <a href="?q={{ query }}&page={{ page_obj.next_page_number }}">next</a>
+                <a href="?q={{ query }}&page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</body>
+
+</html>
