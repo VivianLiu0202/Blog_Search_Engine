@@ -1,0 +1,20 @@
+<!-- searchapp/templates/search_logs.html -->
+<html>
+<head>
+    <title>查询日志</title>
+</head>
+<body>
+    <h1>查询日志</h1>
+    <ul>
+        {% for log in logs %}
+        <li>
+            <strong>User:</strong> {{ log.user.username }}
+            <strong>Query:</strong> {{ log.query }}
+            <strong>Time:</strong> {{ log.timestamp }}
+        </li>
+        {% empty %}
+        <li>没有查询日志记录。</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!-- login.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Log in</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Log in</button>
+  </form>
+  <p>Don't have an account? <a href="{% url 'register' %}">Register here</a>.</p> <!-- 添加的注册链接 -->
+{% endblock %}
