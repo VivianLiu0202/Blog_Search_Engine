@@ -1,0 +1,148 @@
+Search Query Logs:
+test1 searched for 'python' on 2023-12-28 12:23:50.643992+00:00
+test1 searched for 'python' on 2023-12-28 12:23:56.204770+00:00
+test1 searched for 'py*' on 2023-12-28 12:24:02.310358+00:00
+test1 searched for 'C++' on 2023-12-28 12:24:22.758019+00:00
+test1 searched for 'c*' on 2023-12-28 12:24:30.068211+00:00
+test1 searched for '开发' on 2023-12-28 12:24:43.258540+00:00
+test1 searched for '吃饭' on 2023-12-28 12:24:48.782160+00:00
+test1 searched for '吃饭' on 2023-12-28 12:24:58.195214+00:00
+test1 searched for '工作' on 2023-12-28 12:25:32.971925+00:00
+test1 searched for '工作' on 2023-12-28 12:25:37.294374+00:00
+test1 searched for '工作' on 2023-12-28 12:25:40.578037+00:00
+test1 searched for '赚钱' on 2023-12-28 12:25:48.534583+00:00
+test1 searched for '赚钱' on 2023-12-28 12:25:55.795449+00:00
+test1 searched for '打工' on 2023-12-28 12:25:59.398214+00:00
+test1 searched for '打工' on 2023-12-28 12:26:49.659646+00:00
+test1 searched for 'C++' on 2023-12-28 12:27:31.983894+00:00
+test1 searched for 'C++' on 2023-12-28 12:27:48.233867+00:00
+test1 searched for 'C  ' on 2023-12-28 12:28:17.452570+00:00
+test1 searched for 'c' on 2023-12-28 12:28:30.362272+00:00
+test1 searched for 'c' on 2023-12-28 12:29:06.533931+00:00
+test1 searched for 'c' on 2023-12-28 12:29:13.945996+00:00
+test1 searched for 'c++' on 2023-12-28 12:29:18.836551+00:00
+test1 searched for 'C++' on 2023-12-28 12:29:35.186001+00:00
+test1 searched for 'C++' on 2023-12-28 12:29:40.366132+00:00
+test1 searched for 'C  ' on 2023-12-28 12:30:02.443053+00:00
+test1 searched for 'c*' on 2023-12-28 12:30:12.756454+00:00
+test1 searched for 'c*' on 2023-12-28 12:30:42.856072+00:00
+test1 searched for '算法' on 2023-12-28 12:31:47.427417+00:00
+test2 searched for '学生' on 2023-12-28 12:33:12.389014+00:00
+test2 searched for 'C++' on 2023-12-28 12:33:48.873296+00:00
+test1 searched for 'C++' on 2023-12-28 12:34:58.416085+00:00
+test1 searched for 'C++' on 2023-12-28 12:35:33.924157+00:00
+test1 searched for 'C++' on 2023-12-28 12:36:13.590575+00:00
+test1 searched for 'C++' on 2023-12-28 12:36:17.245750+00:00
+test1 searched for 'C++' on 2023-12-28 12:36:30.034563+00:00
+test2 searched for '学习' on 2023-12-28 12:37:22.840629+00:00
+test2 searched for '学习' on 2023-12-28 12:37:52.342973+00:00
+test2 searched for 'python' on 2023-12-28 12:38:04.714269+00:00
+test2 searched for 'python' on 2023-12-28 12:38:28.716461+00:00
+test2 searched for 'python' on 2023-12-28 12:39:01.530406+00:00
+test2 searched for 'python*' on 2023-12-28 12:39:07.091230+00:00
+test2 searched for 'python*' on 2023-12-28 12:39:45.779254+00:00
+test1 searched for 'python' on 2023-12-28 12:40:20.367998+00:00
+test1 searched for 'python' on 2023-12-28 12:40:32.207862+00:00
+test3 searched for 'python' on 2023-12-28 12:42:11.353004+00:00
+test3 searched for 'python' on 2023-12-28 12:43:08.440497+00:00
+test1 searched for '学习' on 2023-12-28 13:45:20.791203+00:00
+test1 searched for 'python' on 2023-12-28 14:10:10.718233+00:00
+test1 searched for 'python 学习' on 2023-12-28 14:11:51.700660+00:00
+test1 searched for 'python 学习' on 2023-12-28 14:11:51.765776+00:00
+test1 searched for 'python 学习' on 2023-12-28 14:12:17.032254+00:00
+test1 searched for 'python 学习' on 2023-12-28 14:12:28.409699+00:00
+test1 searched for 'python 学习' on 2023-12-28 14:13:28.388944+00:00
+test1 searched for 'python 学习' on 2023-12-28 14:13:33.362546+00:00
+test1 searched for 'python 学习' on 2023-12-28 14:16:31.735014+00:00
+test1 searched for 'python 学习' on 2023-12-28 14:16:42.827198+00:00
+test1 searched for 'python 学习' on 2023-12-28 14:17:44.012648+00:00
+test1 searched for 'python 学习' on 2023-12-28 14:17:52.537626+00:00
+test1 searched for 'python 学习' on 2023-12-28 14:18:24.362441+00:00
+test1 searched for 'python 学习' on 2023-12-28 14:18:29.304202+00:00
+test1 searched for 'python 学习' on 2023-12-28 14:18:33.467407+00:00
+test1 searched for 'python 学习' on 2023-12-28 14:18:36.282981+00:00
+test1 searched for 'python 学习' on 2023-12-28 14:18:41.755892+00:00
+test1 searched for 'python 学习' on 2023-12-28 14:18:54.034878+00:00
+test1 searched for 'python 学习' on 2023-12-28 14:18:57.010587+00:00
+test1 searched for 'python学习' on 2023-12-28 14:19:02.903438+00:00
+test1 searched for 'python' on 2023-12-28 14:19:08.407342+00:00
+test1 searched for 'python' on 2023-12-28 14:19:11.735011+00:00
+test1 searched for 'python' on 2023-12-28 14:26:21.791315+00:00
+test1 searched for 'python 学习' on 2023-12-28 14:31:11.266686+00:00
+test1 searched for 'python 学习' on 2023-12-28 14:31:31.063228+00:00
+test1 searched for 'python学习' on 2023-12-28 14:31:55.274035+00:00
+test1 searched for 'python学习' on 2023-12-28 14:32:04.915533+00:00
+test1 searched for 'python' on 2023-12-28 14:33:29.746310+00:00
+test1 searched for 'c*' on 2023-12-28 14:35:58.525113+00:00
+test1 searched for 'py*' on 2023-12-28 14:36:10.232088+00:00
+test1 searched for 'py*on' on 2023-12-28 14:36:37.051210+00:00
+test1 searched for 'py*on' on 2023-12-28 14:36:43.937514+00:00
+test1 searched for 'py*on' on 2023-12-28 14:36:48.158375+00:00
+test1 searched for 'python' on 2023-12-28 14:36:53.099448+00:00
+test1 searched for 'python' on 2023-12-28 14:36:58.397820+00:00
+test1 searched for 'py*on学习' on 2023-12-28 14:37:13.253074+00:00
+test1 searched for 'pyth*' on 2023-12-28 14:37:26.832300+00:00
+test1 searched for 'pyth*' on 2023-12-28 14:37:42.582862+00:00
+test1 searched for 'python*' on 2023-12-28 14:38:00.645842+00:00
+test1 searched for 'python学习*' on 2023-12-28 14:38:17.751184+00:00
+test1 searched for 'python*' on 2023-12-28 14:38:22.956937+00:00
+test1 searched for 'pytho？' on 2023-12-28 14:38:30.544460+00:00
+test1 searched for 'pyth?n' on 2023-12-28 14:38:41.308986+00:00
+test1 searched for 'python?习' on 2023-12-28 14:39:45.745618+00:00
+test1 searched for 'python?' on 2023-12-28 14:39:49.359406+00:00
+
+Click Logs:
+test1 clicked on 'https://blog.51cto.com/u_15926533/8907496' at 2023-12-28 12:24:11.170036+00:00
+test1 clicked on 'https://blog.51cto.com/u_15702012/8648714' at 2023-12-28 12:24:50.867003+00:00
+test1 clicked on 'https://blog.51cto.com/u_6668792/7550908' at 2023-12-28 12:25:00.374531+00:00
+test1 clicked on 'https://blog.51cto.com/u_8238263/6022402' at 2023-12-28 12:25:04.588841+00:00
+test1 clicked on 'https://blog.51cto.com/yizhipan/5649972' at 2023-12-28 12:25:08.801637+00:00
+test1 clicked on 'https://blog.51cto.com/u_15838996/8581563' at 2023-12-28 12:25:13.593596+00:00
+test1 clicked on 'https://blog.51cto.com/u_15702012/8648714' at 2023-12-28 12:27:36.049019+00:00
+test1 clicked on 'https://blog.51cto.com/gkcode/8842735' at 2023-12-28 12:27:51.794931+00:00
+test1 clicked on 'https://blog.51cto.com/u_16391844/8910631' at 2023-12-28 12:28:01.798712+00:00
+test1 clicked on 'https://blog.51cto.com/gkcode/8909133' at 2023-12-28 12:28:07.346651+00:00
+test1 clicked on 'https://blog.51cto.com/fkxxgis/8926850' at 2023-12-28 12:29:23.133502+00:00
+test1 clicked on 'https://blog.51cto.com/xiaowange/8777475' at 2023-12-28 12:29:44.760053+00:00
+test1 clicked on 'https://blog.51cto.com/u_12369060/8718382' at 2023-12-28 12:30:17.591610+00:00
+test1 clicked on 'https://blog.51cto.com/u_15863876/8524830' at 2023-12-28 12:31:50.862614+00:00
+test1 clicked on 'https://blog.51cto.com/LNTON/7523109' at 2023-12-28 12:31:57.788717+00:00
+test1 clicked on 'https://blog.51cto.com/u_15529898/6698472' at 2023-12-28 12:32:01.315594+00:00
+test2 clicked on 'https://blog.51cto.com/u_16220542/8924282' at 2023-12-28 12:33:16.392974+00:00
+test2 clicked on 'https://blog.51cto.com/u_6668792/7549908' at 2023-12-28 12:33:21.995297+00:00
+test2 clicked on 'https://blog.51cto.com/u_6668792/7383395' at 2023-12-28 12:33:27.641179+00:00
+test2 clicked on 'https://blog.51cto.com/u_6668792/7420701' at 2023-12-28 12:33:34.737508+00:00
+test2 clicked on 'https://blog.51cto.com/u_6668792/7423900' at 2023-12-28 12:33:38.178602+00:00
+test2 clicked on 'https://blog.51cto.com/u_14202100/8831668' at 2023-12-28 12:33:50.568104+00:00
+test2 clicked on 'https://blog.51cto.com/u_15702012/8673266' at 2023-12-28 12:33:54.468525+00:00
+test2 clicked on 'https://blog.51cto.com/u_16148284/6587274' at 2023-12-28 12:33:57.962398+00:00
+test2 clicked on 'https://blog.51cto.com/u_14202100/8831674' at 2023-12-28 12:34:00.635552+00:00
+test2 clicked on 'https://blog.51cto.com/M82A1/7543967' at 2023-12-28 12:34:05.452963+00:00
+test2 clicked on 'https://blog.51cto.com/u_16213352/7210214' at 2023-12-28 12:34:08.261629+00:00
+test2 clicked on 'https://blog.51cto.com/u_16303349/7952551' at 2023-12-28 12:34:11.236090+00:00
+test2 clicked on 'https://blog.51cto.com/u_16175525/7415575' at 2023-12-28 12:34:14.129129+00:00
+test1 clicked on 'https://blog.51cto.com/u_15082365/8688261' at 2023-12-28 12:35:43.748577+00:00
+test1 clicked on 'https://blog.51cto.com/u_14951811/6273799' at 2023-12-28 12:35:53.110459+00:00
+test1 clicked on 'https://blog.51cto.com/yizhipan/5649972' at 2023-12-28 12:36:36.464501+00:00
+test2 clicked on 'https://blog.51cto.com/u_15634281/8852664' at 2023-12-28 12:38:07.702616+00:00
+test2 clicked on 'https://blog.51cto.com/u_15926533/8907496' at 2023-12-28 12:38:14.659980+00:00
+test2 clicked on 'https://blog.51cto.com/u_16022798/8908602' at 2023-12-28 12:38:18.561388+00:00
+test2 clicked on 'https://blog.51cto.com/u_8598676/1398229' at 2023-12-28 12:38:32.467836+00:00
+test2 clicked on 'https://blog.51cto.com/linuxtux/1382178' at 2023-12-28 12:38:35.693100+00:00
+test2 clicked on 'https://blog.51cto.com/u_13945372/6099117' at 2023-12-28 12:38:39.293381+00:00
+test2 clicked on 'https://blog.51cto.com/u_16346809/8237408' at 2023-12-28 12:38:42.424816+00:00
+test2 clicked on 'https://blog.51cto.com/u_14448891/6991643' at 2023-12-28 12:38:45.685309+00:00
+test2 clicked on 'https://blog.51cto.com/u_15702012/7907757' at 2023-12-28 12:38:49.538987+00:00
+test2 clicked on 'https://blog.51cto.com/u_15702012/7907757' at 2023-12-28 12:39:08.451670+00:00
+test2 clicked on 'https://blog.51cto.com/u_15702012/7979239' at 2023-12-28 12:39:15.757442+00:00
+test2 clicked on 'https://blog.51cto.com/u_16148284/7533778' at 2023-12-28 12:39:19.028903+00:00
+test2 clicked on 'https://blog.51cto.com/u_14205795/8756999' at 2023-12-28 12:39:22.355261+00:00
+test2 clicked on 'https://blog.51cto.com/u_15486072/4933600' at 2023-12-28 12:39:25.476640+00:00
+test2 clicked on 'https://blog.51cto.com/u_16213423/8912806' at 2023-12-28 12:39:28.722803+00:00
+test2 clicked on 'https://blog.51cto.com/u_16213397/8913672' at 2023-12-28 12:39:31.497052+00:00
+test3 clicked on 'https://blog.51cto.com/u_16175525/8912039' at 2023-12-28 12:42:19.833006+00:00
+test3 clicked on 'https://blog.51cto.com/u_13945372/6099117' at 2023-12-28 12:42:27.080155+00:00
+test3 clicked on 'https://blog.51cto.com/u_14244765/8886566' at 2023-12-28 12:42:31.406737+00:00
+test3 clicked on 'https://blog.51cto.com/u_14244765/8787678' at 2023-12-28 12:42:35.210558+00:00
+test3 clicked on 'https://blog.51cto.com/u_14244765/5946259' at 2023-12-28 12:42:39.674953+00:00
+test3 clicked on 'https://blog.51cto.com/u_15486072/4933600' at 2023-12-28 12:42:43.534869+00:00

@@ -2,13 +2,7 @@ import scrapy
 from blog_spider.items import BlogSpiderItem,BlogTypeItem
 from blog_spider.settings import COOKIE,USER_AGENT
 import random
-from typing import Iterable
-import scrapy
-from scrapy.http import Request
-import json
-import re
-from bs4 import BeautifulSoup
-import datetime
+
 
 class BlogtypeSpider(scrapy.Spider):
     name = "blogType"
@@ -25,8 +19,6 @@ class BlogtypeSpider(scrapy.Spider):
         # 解析类别页面并遍历子类别
         category_list = response.css('div.nav-box')
         for category in category_list.css('a'):
-            # type_item['TypeWords'] = category.css('::text').get()  # 提取链接文本
-            # type_item['TypeUrl'] = category.css('::attr(href)').get()  # 提取链接URL
             url = category.css('::attr(href)').get()  # 提取链接URL
             yield response.follow(url=url, callback=self.parse_category)
     
@@ -37,7 +29,6 @@ class BlogtypeSpider(scrapy.Spider):
             type_name = minicategory.css('::text').get()
             miniurl = minicategory.css('::attr(href)').get()
             yield response.follow(url=miniurl, callback=self.parse_typepage, meta={'type_name': type_name,'urls': []})
-
 
     def parse_typepage(self,response):
         # 解析文章列表页面并遍历文章详情

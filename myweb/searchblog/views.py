@@ -64,8 +64,12 @@ def login_view(request):
 # 站内查询
 def standard_search(query, user=None, size=10000, sort_by='pagerank_only'):
     # 基础查询
-    base_query = Q("multi_match", query=query, fields=['title', 'content','author','abstract'])
-
+    base_query = Q("multi_match", query=query, fields=[
+        'title^5',     # 标题字段，权重为5
+        'content',     # 内容字段，权重默认为1
+        'author^2',  # 作者字段，权重为2
+        'abstract^3'     # 摘要字段，权重为3
+    ])
     # 如果选择个性化排序并且用户已登录
     if sort_by == 'personalize_search' and user is not None:
         user_profile = {
@@ -91,7 +95,7 @@ def standard_search(query, user=None, size=10000, sort_by='pagerank_only'):
     # 如果选择PR排序或用户未登录
     else:
         s = Search(index='blog').query(base_query)
-        s = s.sort({'PR': {'order': 'desc'}})
+        s = s.sort({'PR': {'order': 'desc'}}, {'_score': {'order': 'desc'}})
 
     s = s[:size]
     response = s.execute()
@@ -100,7 +104,10 @@ def standard_search(query, user=None, size=10000, sort_by='pagerank_only'):
 
 # 短语查询
 def phrase_search(query, user=None, size=10000, sort_by='pagerank_only'):
-    base_query = Q("match_phrase", content=query)
+    base_query = Q('bool', should=[
+        Q("match_phrase", title={"query": query, "boost": 2}),  # 标题匹配，权重为2
+        Q("match_phrase", content=query)  # 内容匹配，权重默认为1
+    ], minimum_should_match=1)
     # 如果选择了个性化搜索并且用户已登录
     if sort_by == 'personalize_search' and user is not None:
         user_profile = {
@@ -121,7 +128,7 @@ def phrase_search(query, user=None, size=10000, sort_by='pagerank_only'):
         s = s.sort({'_score': {'order': 'desc'}}, {'PR': {'order': 'desc'}})
     else:
         s = Search(index='blog').query(base_query)
-        s = s.sort({'PR': {'order': 'desc'}})
+        s = s.sort({'PR': {'order': 'desc'}}, {'_score': {'order': 'desc'}})
 
     s = s[:size]
     response = s.execute()
@@ -129,7 +136,10 @@ def phrase_search(query, user=None, size=10000, sort_by='pagerank_only'):
 
 # 通配符查询
 def wildcard_search(query,user=None, size=10000, sort_by='pagerank_only'):
-    base_query = Q("wildcard", title=query)
+    base_query = Q('bool', should=[
+        Q("wildcard", title={"value": query, "boost": 2}),  # 标题通配符匹配，权重为2
+        Q("wildcard", content=query)  # 内容通配符匹配，权重默认为1
+    ], minimum_should_match=1)
     # 如果选择了个性化搜索并且用户已登录
     if sort_by == 'personalize_search' and user is not None:
         user_profile = {
@@ -151,7 +161,7 @@ def wildcard_search(query,user=None, size=10000, sort_by='pagerank_only'):
         s = s.sort({'_score': {'order': 'desc'}}, {'PR': {'order': 'desc'}})
     else:
         s = Search(index='blog').query(base_query)
-        s = s.sort({'PR': {'order': 'desc'}})
+        s = s.sort({'PR': {'order': 'desc'}}, {'_score': {'order': 'desc'}})
 
     s = s[:size]
     response = s.execute()

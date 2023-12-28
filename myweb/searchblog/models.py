@@ -11,7 +11,6 @@ connections.create_connection(hosts=[ES_HOST])
 my_analyzer = analyzer('ik_smart')
 
 # Create your models here.
-
 class BlogIndex(Document):
     title = Text(analyzer="ik_max_word")
     author = Text(analyzer="ik_smart")

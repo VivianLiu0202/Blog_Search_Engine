@@ -32,17 +32,12 @@ def compute_pagerank(nodes, alpha=0.85, iterations=100):
 
     return nodes
 
-# 假设你有多个节点
-import json
-
-# 将此路径替换为您的JSON文件的实际路径
 json_file_path = '/Users/liuvivian/Blog_Search_Engine/blog_spider/blog_spider/spiders/output1.json'
 
 # 读取JSON文件并将内容加载到变量中
 try:
     with open(json_file_path, 'r', encoding='utf-8') as file:
         nodes = json.load(file)
-    # 输出nodes中的一些数据以验证内容
     print(nodes[:2])  # 打印前两个节点，作为示例
 except FileNotFoundError:
     print(f"文件未找到: {json_file_path}")

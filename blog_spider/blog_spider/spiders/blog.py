@@ -32,7 +32,7 @@ class BlogSpider(scrapy.Spider):
             data = json.load(f)
 
         #分批读取data，先读取10个
-        for i in data[66:68]:
+        for i in data[0:68]:
             print(i);
             if i['TypeUrl'] is not None:
                 for url in i['TypeUrl']:
