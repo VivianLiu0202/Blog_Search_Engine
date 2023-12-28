@@ -1,47 +1,58 @@
 <!-- searchapp/templates/search_logs.html -->
 {% load static %}
 <html>
+
 <head>
     <title>查询日志</title>
     <script src="{% static 'js/jquery.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/search_log.css' %}">
 </head>
+
 <body>
     <h1>查询日志</h1>
-    
+
     <!-- 新增：显示最常搜索的关键词 -->
-    <h2>最常搜索Top10</h2>
-    <ul>
-        {% for word, count in most_common_words %}
+    <div class="section">
+        <h2>最常搜索Top10</h2>
+        <ul>
+            {% for word, count in most_common_words %}
             <li>{{ word }}: {{ count }}</li>
-        {% endfor %}
-    </ul>
-    
+            {% endfor %}
+        </ul>
+    </div>
+
     <!-- 现有的日志展示 -->
-    <h2>查询日志展示</h2>
-    <ul>
-        {% for log in logs %}
+    <div class="section">
+        <h2>查询日志展示</h2>
+        <ul>
+            {% for log in logs %}
             <li>
                 <strong>用户:</strong> {{ log.user.username }}
                 <strong>查询内容:</strong> {{ log.query }}
                 <strong>时间:</strong> {{ log.timestamp }}
             </li>
-        {% empty %}
+            {% empty %}
             <li>没有查询日志记录。</li>
-        {% endfor %}
-    </ul>
+            {% endfor %}
+        </ul>
+    </div>
 
     <!-- 新增：显示最近点击的链接 -->
-    <h2>最近点击链接</h2>
-    <ul>
-        {% for log in click_logs %}
+    <div class="section">
+        <h2>最近点击链接</h2>
+        <ul>
+            {% for log in click_logs %}
             <li>
                 <strong>用户:</strong> {{ log.user.username }}
                 <strong>点击链接:</strong> <a href="{{ log.url }}" target="_blank">{{ log.url }}</a>
                 <strong>点击时间:</strong> {{ log.timestamp }}
             </li>
-        {% empty %}
+            {% empty %}
             <li>没有点击链接记录。</li>
-        {% endfor %}
-    </ul>
+            {% endfor %}
+        </ul>
+    </div>
+
 </body>
+
 </html>

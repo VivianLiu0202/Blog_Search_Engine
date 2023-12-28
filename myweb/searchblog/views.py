@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import CustomUserCreationForm
 from django.core.paginator import Paginator
-
+from django.conf import settings
 from .models import BlogIndex, SearchQueryLog, ClickLog
 from elasticsearch_dsl import Search,Q
 from elasticsearch_dsl.query import FunctionScore
@@ -17,10 +17,17 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from PIL import Image
 from io import BytesIO
-
+import pickle
+import numpy as np
 from collections import Counter
 import jieba  # 使用jieba分词库进行中文分词
+from django.contrib import messages
 
+
+import logging
+logging.basicConfig(level=logging.DEBUG)
+# 获取日志记录器
+logger = logging.getLogger(__name__)
 
 # 用户注册视图
 def signup_view(request):
@@ -46,8 +53,9 @@ def login_view(request):
                 login(request, user)
                 return redirect(reverse('search'))  # 使用 reverse 获取 search 视图的 URL
             else:
-                # 在这里处理无效登录
-                form.add_error(None, "Invalid username or password.")
+                messages.error(request, "无效的用户名或密码。")
+        else:
+            messages.error(request, "登录失败，请检查您的输入。")
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
@@ -100,7 +108,6 @@ def phrase_search(query, user=None, size=10000, sort_by='pagerank_only'):
             'occupation': user.occupation
         }
         top_queries = get_top_queries(user)
-
         functions = []
         if user_profile['favorite_field']:
             functions.append({"filter": Q("term", content=user_profile['favorite_field']), "weight": 2})
@@ -115,6 +122,8 @@ def phrase_search(query, user=None, size=10000, sort_by='pagerank_only'):
     else:
         s = Search(index='blog').query(base_query)
         s = s.sort({'PR': {'order': 'desc'}})
+
+    s = s[:size]
     response = s.execute()
     return list(response)
 
@@ -143,22 +152,55 @@ def wildcard_search(query,user=None, size=10000, sort_by='pagerank_only'):
     else:
         s = Search(index='blog').query(base_query)
         s = s.sort({'PR': {'order': 'desc'}})
+
+    s = s[:size]
     response = s.execute()
     return list(response)
 
 def search(request):
+    user = request.user if request.user.is_authenticated else None
+    recommendations = []
+    url_to_title = {}  # 在这里初始化 url_to_title 为一个空字典
+    # 推荐系统
+    if user:
+        # 加载模型和映射
+        with open('/Users/liuvivian/Blog_Search_Engine/myweb/recommendation_model.pkl', 'rb') as f:
+            model = pickle.load(f)
+        with open('/Users/liuvivian/Blog_Search_Engine/myweb/mapping.pkl', 'rb') as f:
+            mapping = pickle.load(f)
+
+        # 获取用户和链接的内部id
+        # 获取内部映射
+        user_id_map, user_feature_map, item_id_map, item_feature_map = mapping
+        user_inner_id = user_id_map.get(user.id)
+
+        # 创建物品ID的逆映射
+        item_id_inverse_map = {v: k for k, v in item_id_map.items()}
+        if user_inner_id is not None:
+            # 预测分数 并获取前10个推荐
+            scores = model.predict(user_inner_id, np.arange(len(item_id_map)))
+            top_item_indices = np.argsort(-scores)
+            top_items = [item_id_inverse_map[item_id] for item_id in top_item_indices][:10]
+            recommendations = top_items
+            # 在视图函数中调用此函数，并将结果添加到上下文中
+            url_to_title = get_titles_for_urls(top_items)
+
     # 只渲染搜索表单并等待用户输入
-    return render(request, 'search.html')
+    return render(request, 'search.html', {
+            'recommendations': recommendations,  # 添加推荐到上下文
+            'url_to_title': url_to_title  # 添加URL到标题的映射
+        })
 
 # 搜索结果
 def search_results(request):
     query = request.GET.get('q', '')
     query_type = request.GET.get('type', 'standard')
     sort_method = request.GET.get('sort_method', 'pagerank_only')
-    print(sort_method)
+    #print(sort_method)
     user = request.user if request.user.is_authenticated else None
     results = []
-        
+    recommendations = []
+    url_to_title = {}  # 在这里初始化 url_to_title 为一个空字典 
     if query:
         # 添加一个参数记录查询的方式
         if request.user.is_authenticated:
@@ -183,12 +225,39 @@ def search_results(request):
         page_number = request.GET.get('page', 1)
         page_obj = paginator.get_page(page_number)
 
+        # 推荐系统
+        if user:
+            # 加载模型和映射
+            with open('/Users/liuvivian/Blog_Search_Engine/myweb/recommendation_model.pkl', 'rb') as f:
+                model = pickle.load(f)
+            with open('/Users/liuvivian/Blog_Search_Engine/myweb/mapping.pkl', 'rb') as f:
+                mapping = pickle.load(f)
+
+            # 获取用户和链接的内部id
+            # 获取内部映射
+            user_id_map, user_feature_map, item_id_map, item_feature_map = mapping
+            user_inner_id = user_id_map.get(user.id)
+
+            # 创建物品ID的逆映射
+            item_id_inverse_map = {v: k for k, v in item_id_map.items()}
+            if user_inner_id is not None:
+                # 预测分数 并获取前10个推荐
+                scores = model.predict(user_inner_id, np.arange(len(item_id_map)))
+                top_item_indices = np.argsort(-scores)
+                top_items = [item_id_inverse_map[item_id] for item_id in top_item_indices][:10]
+                recommendations = top_items
+                # 在视图函数中调用此函数，并将结果添加到上下文中
+                url_to_title = get_titles_for_urls(top_items)
+                print(url_to_title)
+
         # 渲染到结果模板
         return render(request, 'results.html', {
             'query_type': query_type,
             'query': query,
             'sort_method': sort_method,  # 这行确保sort_method被传回模板
             'page_obj': page_obj,
+            'recommendations': recommendations,  # 添加推荐到上下文
+            'url_to_title': url_to_title  # 添加URL到标题的映射
         })
 
     # 如果没有查询参数，重定向回主搜索页面
@@ -213,6 +282,8 @@ def take_snapshot(request):
         return JsonResponse({'status': 'success'})
     return JsonResponse({'status': 'error'}, status=400)
 
+# 从用户查询日志中获取最常见的关键词
+# 用于个性化搜索以及个性化推荐
 def get_top_queries(user):
     logs = SearchQueryLog.objects.filter(user=user)
     queries = logs.values_list('query', flat=True)
@@ -264,3 +335,26 @@ def record_click(request):
             return JsonResponse({'status': 'unauthenticated'}, status=401)
 
     return JsonResponse({'status': 'error'}, status=400)
+
+def get_all_links_from_es():
+    # 创建一个Search对象来检索所有博客文章的链接
+    s = Search(index="blog").source(['url'])  # 只需要'url'字段
+    response = s.scan()
+    # 提取所有链接
+    links = [hit.url for hit in response]
+    return links
+
+# 假设这个函数返回用户点击的链接
+def get_user_interactions():
+    # 返回形如[(user_id, link_id), ...]的列表
+    logs = ClickLog.objects.all().values_list('user_id', 'url', named=True)
+    return [(log.user_id, log.url) for log in logs]
+
+# 下面的代码将获取这些链接的标题
+def get_titles_for_urls(urls):
+    # 创建搜索查询以获取链接的标题
+    s = Search(index='blog').filter('terms', url=urls).source(['title', 'url'])
+    response = s.execute()
+    # 创建一个字典，将URL映射到其标题
+    url_to_title = {hit.url: hit.title for hit in response}
+    return url_to_title

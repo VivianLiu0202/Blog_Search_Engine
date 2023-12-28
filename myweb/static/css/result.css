@@ -1,0 +1,128 @@
+@charset "utf-8";
+
+html {
+    *overflow: auto;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    /* 改为 space-around 为子元素提供均匀的空间分布 */
+    align-items: center;
+    padding: 40px;
+    background-color: #f8f8f8;
+    background-image: url(../images/headerbg.jpg);
+}
+
+.search-form {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.search-results,
+.recommendations {
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+}
+
+.search-form input[type="text"]{
+    border: 1px solid #bfbfbf;
+    padding: 0 15px;
+    outline: none;
+    height: 40px;
+    width: 350px;
+    background: url(../images/inputbg.png);
+    font-size: 14px;
+}
+.search-form button {
+    font-size: 16px;
+    padding: 10px;
+    margin: 0 5px;
+    flex-grow: 0;
+    height: 40px;
+    cursor: pointer;
+}
+.search-form select {
+    cursor: pointer;
+    height: 40px;
+    width: 200px;
+    flex-grow: 0;
+    margin: 0 5px;
+    border: 1px solid #bfbfbf;
+    outline: none; /*清除难看的粗黑线*/
+    padding: 0 15px;
+    font-size: 16px;
+}
+
+.search-log-link {
+    margin: 0 5px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #000;
+    flex-grow: 0;
+    background-color: #f8f8f8;
+    padding: 10px;
+    border: 1px solid #bfbfbf;
+    border-radius: 5px;
+}
+
+.search-log-link:hover {
+    background-color: #ddd;
+    /* 悬停效果 */
+}
+
+.search-results {
+    width: 65%;
+}
+.search-results .search-Item{
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.search-results .search-Item a{
+    cursor: pointer;
+    color: #3e85be;
+}
+
+.recommendations {
+    width: 30%;
+}
+
+.recommendations .recommend-Item{
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #fff;
+}
+.recommendations .recommend-Item a{
+    cursor: pointer;
+    color: #3e85be;
+}
+.pagination {
+    clear: both;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.pagination a {
+    cursor: pointer;
+    color: #3e85be;
+	border-color: #8EB2D2;
+}
+
+.pagination a:hover {
+	color: #023054;
+	border-color: #8EB2D2;
+	background: #B8DFFB;
+}
