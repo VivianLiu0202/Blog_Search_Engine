@@ -6,7 +6,7 @@
 
 python环境：python=3.9.1
 
-网页爬虫：使用Scrapy
+x网页爬虫：使用Scrapy
 
 文本索引：使用Elasticsearch==7.9.1
 
@@ -14,7 +14,7 @@ Web框架：Django
 
 
 
-# 二、使用命令
+# 二、使用命令s
 
 ### 爬虫
 
@@ -80,7 +80,7 @@ python manage.py train_model
 
 ### （1）网页爬取
 
-使用Scrapy爬取https://blog.51cto.com网站的每个板块的前二十页内容并生成url，然后读取这些url并进行爬虫（`blog.py`），下面是部分重要代码：
+使用Scrapy爬取https://blog.51cto.com 网站的每个板块的前二十页内容并生成url，然后读取这些url并进行爬虫（`blog.py`），下面是部分重要代码：
 
 ```python
 #blog.py
